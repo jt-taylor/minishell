@@ -6,10 +6,11 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:13:26 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/10 12:54:10 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/11 19:16:04 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 
 /*
 ** functions allowed within the mandatory part
@@ -56,7 +57,10 @@
 
 int				main(int ac, char **argv, char **env)
 {
-	// load config from input
+	// load config && envirement variables from input
+	ft_minishell_parse_env(env);
+	// test
+	ft_minishell_printenv(g_env, '\n');
 
 	//run the command loop
 

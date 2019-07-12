@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/10 09:33:50 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/11 19:13:17 by jtaylor          ###   ########.fr       */
+/*   Created: 2018/10/20 16:54:04 by jtaylor           #+#    #+#             */
+/*   Updated: 2018/10/21 12:54:50 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include "libft.h"
+int		ft_strcmp(char const *s1, char const *s2)
+{
+	int	i;
 
-/*
-** this will be used as the global env variable for processes to inherit
-*/
-char					**g_env;
-
-/*
-** ft_minishell_parse_env.c
-*/
-void			ft_minishell_printenv(char **env, char c);
-void			ft_minishell_parse_env(char **env);
-
-
-/*
-** ft_minishell_prompt.c"
-*/
-void	ft_minishell_exit_shell(void);
-
-
-#endif
+	i = 0;
+	while (*(s1 + i) && *(s1 + i) == *(s2 + i))
+		i++;
+	return (*((unsigned char *)s1 + i) - *((unsigned char *)s2 + i));
+}

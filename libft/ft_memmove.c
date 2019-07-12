@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/10 09:33:50 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/11 19:13:17 by jtaylor          ###   ########.fr       */
+/*   Created: 2018/10/20 12:08:25 by jtaylor           #+#    #+#             */
+/*   Updated: 2018/10/22 16:19:15 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include "libft.h"
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	size_t	i;
 
-/*
-** this will be used as the global env variable for processes to inherit
-*/
-char					**g_env;
-
-/*
-** ft_minishell_parse_env.c
-*/
-void			ft_minishell_printenv(char **env, char c);
-void			ft_minishell_parse_env(char **env);
-
-
-/*
-** ft_minishell_prompt.c"
-*/
-void	ft_minishell_exit_shell(void);
-
-
-#endif
+	if (!((int *)dst > (int *)src && (int *)src + len > (int *)dst))
+		ft_memcpy(dst, src, len);
+	else
+	{
+		i = len;
+		while (i > 0)
+		{
+			i--;
+			*((char *)dst + i) = *((char *)src + i);
+		}
+	}
+	return (dst);
+}

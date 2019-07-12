@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   get_all_lines.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/10 09:33:50 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/11 19:13:17 by jtaylor          ###   ########.fr       */
+/*   Created: 2019/03/19 22:36:46 by jtaylor           #+#    #+#             */
+/*   Updated: 2019/03/21 07:34:27 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-
-# include "libft.h"
-
 /*
-** this will be used as the global env variable for processes to inherit
+** add this to the header and the makefile
 */
-char					**g_env;
+#include "libft.h"
 
-/*
-** ft_minishell_parse_env.c
-*/
-void			ft_minishell_printenv(char **env, char c);
-void			ft_minishell_parse_env(char **env);
+void		get_all_lines(char **line, int fd)
+{
+	char		add_char[2];
+	char		*tmp;
+	char		*str;
+	int			i;
 
-
-/*
-** ft_minishell_prompt.c"
-*/
-void	ft_minishell_exit_shell(void);
-
-
-#endif
+	i = 1;
+	add_char[1] = 0;
+	str = ft_strdup("");
+	while (i > 0)
+	{
+		i = read(fd, add_char, 1);
+		if (i == 0)
+			break ;
+		tmp = str;
+		str = ft_strjoin(str, add_char);
+		free(tmp);
+	}
+	line[0] = str;
+}

@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_uitoa_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/10 09:33:50 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/11 19:13:17 by jtaylor          ###   ########.fr       */
+/*   Created: 2019/03/18 13:57:26 by jtaylor           #+#    #+#             */
+/*   Updated: 2019/03/18 14:20:37 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include "libft.h"
+char		*ft_uitoa_base(uint32_t n, int base)
+{
+	int		len;
+	int		i;
+	char	*str;
+	char	*tmp;
 
-/*
-** this will be used as the global env variable for processes to inherit
-*/
-char					**g_env;
-
-/*
-** ft_minishell_parse_env.c
-*/
-void			ft_minishell_printenv(char **env, char c);
-void			ft_minishell_parse_env(char **env);
-
-
-/*
-** ft_minishell_prompt.c"
-*/
-void	ft_minishell_exit_shell(void);
-
-
-#endif
+	len = 1;
+	i = n;
+	while (i /= base)
+		len++;
+	if ((tmp = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
+		return (0);
+	str = ft_strdup("0123456789abcdef");
+	tmp[len] = '\0';
+	while (len--)
+	{
+		tmp[len] = str[n % base];
+		n /= base;
+	}
+	len = ft_strlen(tmp);
+	free(str);
+	return (tmp);
+}
