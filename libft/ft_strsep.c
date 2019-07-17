@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_strsep.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/10 09:33:50 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/12 15:40:49 by jtaylor          ###   ########.fr       */
+/*   Created: 2019/07/12 15:08:06 by jtaylor           #+#    #+#             */
+/*   Updated: 2019/07/12 16:22:01 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include "libft.h"
+char	*ft_strsep(char **string_in, char *delim)
+{
+	char	*begin;
+	char	*end;
 
-/*
-** MACROS
-*/
-# define MINISHELL_BUF_SIZE 1024
-
-/*
-** all of the glabal vars
-*/
-char					**g_env;
-
-/*
-** ft_minishell_parse_env.c
-*/
-void			ft_minishell_printenv(char **env, char c);
-void			ft_minishell_parse_env(char **env);
-
-
-/*
-** ft_minishell_prompt.c"
-*/
-void	ft_minishell_exit_shell(void);
-
-
-#endif
+	begin = *string_in;
+	if (begin == NULL)
+		return NULL;
+	end = begin + ft_strcspn(begin, delim);
+	if (*end)
+	{
+		*end++ = '\0';
+		*string_in = end;
+	}
+	else
+		*string_in = NULL;
+	return (begin);
+}

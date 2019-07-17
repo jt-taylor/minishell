@@ -1,41 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_minishell_prompt.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/10 09:33:50 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/12 15:40:49 by jtaylor          ###   ########.fr       */
+/*   Created: 2019/07/11 18:53:02 by jtaylor           #+#    #+#             */
+/*   Updated: 2019/07/12 14:56:42 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
 
-# include "libft.h"
-
-/*
-** MACROS
-*/
-# define MINISHELL_BUF_SIZE 1024
-
-/*
-** all of the glabal vars
-*/
-char					**g_env;
-
-/*
-** ft_minishell_parse_env.c
-*/
-void			ft_minishell_printenv(char **env, char c);
-void			ft_minishell_parse_env(char **env);
-
-
-/*
-** ft_minishell_prompt.c"
-*/
-void	ft_minishell_exit_shell(void);
-
-
-#endif
+void	ft_minishell_exit_shell(void)
+{
+	ft_freestrarr(g_env);
+	write(1, "\n", 1);
+	exit(0);

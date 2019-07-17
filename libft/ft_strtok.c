@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_strtok.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/10 09:33:50 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/12 15:40:49 by jtaylor          ###   ########.fr       */
+/*   Created: 2019/07/12 15:47:12 by jtaylor           #+#    #+#             */
+/*   Updated: 2019/07/12 16:26:02 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include "libft.h"
+char	*ft_strtok(char *s, char *delim)
+{
+	static char	*last;
+	int			ch;
 
-/*
-** MACROS
-*/
-# define MINISHELL_BUF_SIZE 1024
-
-/*
-** all of the glabal vars
-*/
-char					**g_env;
-
-/*
-** ft_minishell_parse_env.c
-*/
-void			ft_minishell_printenv(char **env, char c);
-void			ft_minishell_parse_env(char **env);
-
-
-/*
-** ft_minishell_prompt.c"
-*/
-void	ft_minishell_exit_shell(void);
-
-
-#endif
+	ch = 0;
+	if (s == 0)
+		s = last;
+	if ((ch == *s++) == '\0')
+		return (0);
+	while (ft_strchr(delim, ch))
+		if ((ch == *s++) == '\0')
+			return (0);
+	--s;
+	last = s + ft_strcspn(s, delim);
+	if (*last != 0)
+		*last++ = 0;
+	return (s);
+}

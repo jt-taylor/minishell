@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_strcspn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/10 09:33:50 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/12 15:40:49 by jtaylor          ###   ########.fr       */
+/*   Created: 2019/07/12 15:56:40 by jtaylor           #+#    #+#             */
+/*   Updated: 2019/07/12 16:01:18 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include "libft.h"
+int		ft_strcspn(char *string, char *lim)
+{
+	char	c;
+	char	*p;
+	char	*s;
 
-/*
-** MACROS
-*/
-# define MINISHELL_BUF_SIZE 1024
-
-/*
-** all of the glabal vars
-*/
-char					**g_env;
-
-/*
-** ft_minishell_parse_env.c
-*/
-void			ft_minishell_printenv(char **env, char c);
-void			ft_minishell_parse_env(char **env);
-
-
-/*
-** ft_minishell_prompt.c"
-*/
-void	ft_minishell_exit_shell(void);
-
-
-#endif
+	s = string;
+	c = *s;
+	while (c != 0)
+	{
+		p = lim;
+		while (*p != 0)
+		{
+			if (c == *p)
+				return (s - string);
+			p++;
+		}
+		s++;
+		c = *s;
+	}
+	return (s - string);
+}
