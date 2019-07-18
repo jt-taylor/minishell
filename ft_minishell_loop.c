@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 13:10:44 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/17 16:19:30 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/17 18:02:46 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,10 @@ void	ft_minishell(void)
 	status = 1;
 	while (status)
 	{
-		ft_printf("$> ");
+		ft_shell_print_prompt();
+		//signal
+		signal(SIGINT, minishell_signal_handle);
 		// read into a line
-		get_next_line(&line);
 		//split line into an array
 		//status = execute;
 		//free(?);
