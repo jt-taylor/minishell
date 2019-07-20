@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 13:10:44 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/17 18:02:46 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/18 12:52:59 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,5 @@ static inline void	line_explode(char **line, char **input)
 			bufsize += MINISHELL_BUF_SIZE;
 
 		}
-	}
-
-}
-
-/*
-** the main loop of the shell
-*/
-
-void	ft_minishell(void)
-{
-	char	**line;
-	char	**input;
-	int		status;
-
-	status = 1;
-	while (status)
-	{
-		ft_shell_print_prompt();
-		//signal
-		signal(SIGINT, minishell_signal_handle);
-		// read into a line
-		//split line into an array
-		//status = execute;
-		//free(?);
 	}
 }

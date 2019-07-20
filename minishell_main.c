@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:13:26 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/18 11:48:13 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/19 22:04:13 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,15 @@
 ** </loop>
 */
 
+
+/*
+** this basically just loops through the array of strings and will execute
+** the command contained within each one , this is to handle the
+int		ft_minishell_exec_commands(//)
+{
+
+}
+
 /*
 ** the third option is implementation specific , is a points to an array of
 ** 		the host env variables , it is also accessible with the global var
@@ -57,19 +66,32 @@
 
 int				main(int ac, char **argv, char **env)
 {
+	char	**raw_input;
+	char	**parsed_input;
+	int		break_value;
+
 	// load config && envirement variables from input
 	ft_minishell_parse_env(env);
 	// test
 		//ft_minishell_printenv(g_env, '\n');
-		//run the command loop
+	//run the command loop
 	while (1)
 	{
 		ft_shell_print_prompt();
 		signal(SIGINT, minishell_signal_handle);
 		//get input
+		get_next_line(0, &raw_input);
 		//check if input is empty
-		//parse into serperate commands bythe ';' charector
+		if (ft_stronly_space(*raw_input))
+		{
+			free(*raw_input);
+			continue ;
+		}
+		// parse input
+		// parse into serperate commands bythe ';' charector
+		minishell_parse_input(raw_input, parsed_input);
 		//execute the command lists
+		break_value = //execute commands(insert string here);
 		//free the command list / array
 		//break statement
 	}

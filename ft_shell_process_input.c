@@ -1,47 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_shell_process_input.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/10 09:33:50 by jtaylor           #+#    #+#             */
+/*   Created: 2019/07/19 15:48:38 by jtaylor           #+#    #+#             */
 /*   Updated: 2019/07/19 22:04:13 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
 
-# include <signal.h>
-# include "libft.h"
-
-/*
-** MACROS
-*/
-# define MINISHELL_BUF_SIZE 1024
-
-/*
-** all of the glabal vars
-*/
-char					**g_env;
-
-/*
-** ft_minishell_parse_env.c
-*/
-void			ft_minishell_printenv(char **env, char c);
-void			ft_minishell_parse_env(char **env);
+// not really sure how i want t parse the input string
+// so far what i am deciding between is either breaking the str into an array
+// 	of strings
+// or I can tokenize the string and just run the command parser in a loop
+//
+// not sure which is better yeth
 
 
-/*
-** ft_minishell_prompt.c"
-*/
-void	ft_minishell_exit_shell(void);
-void		ft_shell_print_prompt(void);
+int		minishell_parse_input(char **raw_input, char **parsed)
+{
+	parsed = ft_strsplit(*raw_input, ';');
+	// i should either do the expansion here or after i return the command
+	// 	str arrays
 
-/*
-** ft_shell_process_input.c
-*/
-int		minishell_parse_input(char **raw_input, char **parsed);
-
-#endif
+	return (0);
+}
