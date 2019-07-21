@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/20 10:51:28 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/11 19:00:04 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/20 17:36:12 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include "ft_printf.h"
 
 typedef	struct	s_list
 {

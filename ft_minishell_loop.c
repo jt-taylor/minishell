@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 13:10:44 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/18 12:52:59 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/20 17:36:49 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static inline void	line_explode(char **line, char **input)
 	position = 0;
 	if (!(tokens = (char **)malloc(sizeof(char *) * bufsize)))
 	{
-		ft_dprintf(stderr, "minishell allocation error\n");
+		ft_dprintf(2, "minishell allocation error\n");
 		exit(EXIT_FAILURE);
 	}
 

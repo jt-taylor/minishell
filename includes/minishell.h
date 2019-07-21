@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:33:50 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/19 22:04:13 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/20 17:36:28 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <signal.h>
 # include "libft.h"
+# include "ft_printf.h"
 
 /*
 ** MACROS
@@ -40,8 +41,20 @@ void	ft_minishell_exit_shell(void);
 void		ft_shell_print_prompt(void);
 
 /*
+** ft_minishell_siganl_handle.c
+*/
+void		process_signal_handle(int sig);
+void		minishell_signal_handle(int signum);
+
+/*
 ** ft_shell_process_input.c
 */
 int		minishell_parse_input(char **raw_input, char **parsed);
+
+/*
+** ft_minishell_exec.c
+*/
+int		minishell_execute(char **command_list);
+static int		minishell_run_command(char *path, char **args);
 
 #endif

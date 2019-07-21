@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:13:26 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/19 22:04:13 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/20 17:29:51 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int				main(int ac, char **argv, char **env)
 		// parse into serperate commands bythe ';' charector
 		minishell_parse_input(raw_input, parsed_input);
 		//execute the command lists
-		break_value = //execute commands(insert string here);
+		break_value = minishell_execute(parsed_input);//execute commands(insert string here);
 		//free the command list / array
 		//break statement
 	}

@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 17:55:35 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/18 12:52:59 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/20 16:28:53 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,18 @@
 */
 
 /*
+** this will handle signal for the 
+*/
+void		process_signal_handle(int sig)
+{
+	if (signo == SIGINT)
+	{
+		write(1, "\n", 1);
+		signal(SIGINT, process_signal_handle);
+	}
+}
+
+/*
 ** this handles the signal values for the minishell program , will make a diff
 **		function for handling signals on the processes
 ** ie	C-c // ctrl-c
@@ -35,7 +47,7 @@ void		minishell_signal_handle(int signum)
 	if (signum == SIGINT)
 	{
 		write(1, "\n", 1);
-		ft_shell_display_prompt();
+		ft_minishell_exit_shell();
 		signal(SIGINT, minishell_signal_handle);
 	}
 }

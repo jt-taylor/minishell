@@ -6,27 +6,36 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 21:29:51 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/19 22:04:13 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/20 17:34:23 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.c"
+#include "minishell.h"
 
 /*
 ** this will fork the process to run the commands
 */
 
-static int		minishell_run_command()//take path to binary && arguments)
+static int		minishell_run_command(char *path, char **args)//take path to binary && arguments)
 {
 	pid_t	pid;
 
 	//fork
+	pid = fork();
 	//run signal for the forked process
+	signal(SIGINT, process_signal_handle);
 	// if pid == 0 (ie is forked process)
 	//		run it with execve
-	//else
+	if (pid == 0)
+	{
+		execve(path, args, g_env);
+	}
+	//else if (error check)
+	// free ?
+	if (path)
+		free(path);
 	//	cleanup
-	return (1)//? not sure what i want to do for the eror checking
+	return (1);//? not sure what i want to do for the eror checking
 }
 
 int		minishell_execute(char **command_list)
@@ -36,4 +45,7 @@ int		minishell_execute(char **command_list)
 	
 	//check permissions with stat / lstat
 	//then call run_command
+	//testingj
+		minishell_run_command("/bin/ls", NULL);
+	return (0);
 }
