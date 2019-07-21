@@ -14,6 +14,7 @@ void	signal_handler(int	signal)
 
 int		main(int ac, char **argv, char **env)
 {
+	char	*tmp;
 	if (signal(SIGINT, signal_handler) == SIG_ERR)
 		printf("sig erorr");
 	pid_t	pid;
@@ -26,6 +27,7 @@ int		main(int ac, char **argv, char **env)
 	while (1)
 	{
 		printf("sleeping\n");
+		printf("current wkdir = %s\n", getcwd(tmp, 80));
 		sleep(1);
 	}
 	return (0);
