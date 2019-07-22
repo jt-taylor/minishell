@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:33:50 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/20 17:36:28 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/22 16:15:21 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <signal.h>
 # include "libft.h"
+# include "get_next_line.h"
 # include "ft_printf.h"
 
 /*
@@ -55,6 +56,5 @@ int		minishell_parse_input(char **raw_input, char **parsed);
 ** ft_minishell_exec.c
 */
 int		minishell_execute(char **command_list);
-static int		minishell_run_command(char *path, char **args);
 
 #endif

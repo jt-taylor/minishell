@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 21:29:51 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/20 17:34:23 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/22 16:14:59 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,15 @@ static int		minishell_run_command(char *path, char **args)//take path to binary 
 
 int		minishell_execute(char **command_list)
 {
+	//testing
+	if (command_list)
+		;
 	//handle builtin function
 	//handle $PATH functions
 	
 	//check permissions with stat / lstat
 	//then call run_command
-	//testingj
+	//testing
 		minishell_run_command("/bin/ls", NULL);
 	return (0);
 }

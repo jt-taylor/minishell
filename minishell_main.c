@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:13:26 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/20 17:29:51 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/22 16:17:59 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int		ft_minishell_exec_commands(//)
 {
 
 }
+*/
 
 /*
 ** the third option is implementation specific , is a points to an array of
@@ -66,8 +67,8 @@ int		ft_minishell_exec_commands(//)
 
 int				main(int ac, char **argv, char **env)
 {
-	char	**raw_input;
-	char	**parsed_input;
+	char	*raw_input;
+	char	**parsed_input = NULL;//
 	int		break_value;
 
 	// load config && envirement variables from input
@@ -75,6 +76,8 @@ int				main(int ac, char **argv, char **env)
 	// test
 		//ft_minishell_printenv(g_env, '\n');
 	//run the command loop
+	//testing
+	break_value = 1;
 	while (1)
 	{
 		ft_shell_print_prompt();
@@ -82,20 +85,29 @@ int				main(int ac, char **argv, char **env)
 		//get input
 		get_next_line(0, &raw_input);
 		//check if input is empty
-		if (ft_stronly_space(*raw_input))
-		{
-			free(*raw_input);
-			continue ;
-		}
+//		if (ft_stronly_space(*raw_input))
+//		{
+//			free(raw_input);
+//			continue ;
+//		}
 		// parse input
 		// parse into serperate commands bythe ';' charector
-		minishell_parse_input(raw_input, parsed_input);
+		minishell_parse_input(&raw_input, parsed_input);
+		ft_putstrarr(parsed_input);
 		//execute the command lists
-		break_value = minishell_execute(parsed_input);//execute commands(insert string here);
+		free(raw_input);
+//		break_value = minishell_execute(parsed_input);//execute commands(insert string here);
 		//free the command list / array
 		//break statement
+		if (break_value < 0)
+			break ;
 	}
 	//free global env array
 	//more cleanup ?
+	//testing
+	if (ac)
+		;
+	if (argv[1])
+		;
 	return (0);
 }

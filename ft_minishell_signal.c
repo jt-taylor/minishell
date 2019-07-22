@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 17:55:35 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/20 16:28:53 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/21 18:28:44 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 */
 void		process_signal_handle(int sig)
 {
-	if (signo == SIGINT)
+	if (sig == SIGINT)
 	{
 		write(1, "\n", 1);
 		signal(SIGINT, process_signal_handle);

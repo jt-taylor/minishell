@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 13:10:44 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/20 17:36:49 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/21 18:28:07 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,31 @@
 ** this is poc , need to readjust this when we add echo '\ escaping'  or quoting
 */
 
-static inline void	line_explode(char **line, char **input)
-{
-	int		bufsize;
-	int		position;
-	char	**tokens;
-	char	*token;
-
-	bufsize = MINISHELL_BUF_SIZE;
-	position = 0;
-	if (!(tokens = (char **)malloc(sizeof(char *) * bufsize)))
-	{
-		ft_dprintf(2, "minishell allocation error\n");
-		exit(EXIT_FAILURE);
-	}
-
-	tokens = ft_strtok(line, " \n\t\n\a");
-	while (token != NULL)
-	{
-		tokens[position] = token;
-		position++;
-
-		if (position >= bufsize)
-		{
-			bufsize += MINISHELL_BUF_SIZE;
-
-		}
-	}
-}
+//	static inline void	line_explode(char **line, char **input)
+//	{
+//		int		bufsize;
+//		int		position;
+//		char	**tokens;
+//		char	*token;
+//	
+//		bufsize = MINISHELL_BUF_SIZE;
+//		position = 0;
+//		if (!(tokens = (char **)malloc(sizeof(char *) * bufsize)))
+//		{
+//			ft_dprintf(2, "minishell allocation error\n");
+//			exit(EXIT_FAILURE);
+//		}
+//	
+//		tokens = ft_strtok(line, " \n\t\n\a");
+//		while (token != NULL)
+//		{
+//			tokens[position] = token;
+//			position++;
+//	
+//			if (position >= bufsize)
+//			{
+//				bufsize += MINISHELL_BUF_SIZE;
+//	
+//			}
+//		}
+//	}
