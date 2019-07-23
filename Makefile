@@ -6,7 +6,7 @@
 #    By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/16 19:30:49 by jtaylor           #+#    #+#              #
-#    Updated: 2019/07/21 20:26:21 by jtaylor          ###   ########.fr        #
+#    Updated: 2019/07/23 15:01:42 by jtaylor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 
 FLAGS = -Wall -Wextra -Werror -I ./libft/includes
 
-DEBUG_FLAG = -g
+DEBUG_FLAG = -g3
 
 SRC =	ft_minishell_exec.c \
 		ft_minishell_find_executable.c \

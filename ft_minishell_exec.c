@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 21:29:51 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/22 16:14:59 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/23 16:09:44 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,20 @@ static int		minishell_run_command(char *path, char **args)//take path to binary 
 	if (pid == 0)
 	{
 		execve(path, args, g_env);
+		kill(pid, 0);
 	}
 	//else if (error check)
 	// free ?
 	if (path)
-		free(path);
+		//free(path);
+		;
 	//	cleanup
 	return (1);//? not sure what i want to do for the eror checking
 }
 
 int		minishell_execute(char **command_list)
 {
+	char *str;
 	//testing
 	if (command_list)
 		;
@@ -49,6 +52,9 @@ int		minishell_execute(char **command_list)
 	//check permissions with stat / lstat
 	//then call run_command
 	//testing
-		minishell_run_command("/bin/ls", NULL);
+	//ohh a new errir with gcc unsequenced modifacation and acess to command_list
+		//minishell_run_command(*command_list, command_list++);
+	str = *command_list;
+		minishell_run_command(str, command_list++);
 	return (0);
 }

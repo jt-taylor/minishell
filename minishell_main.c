@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:13:26 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/22 16:17:59 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/23 16:09:27 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,16 @@ int				main(int ac, char **argv, char **env)
 //			continue ;
 //		}
 		// parse input
-		// parse into serperate commands bythe ';' charector
-		minishell_parse_input(&raw_input, parsed_input);
-		ft_putstrarr(parsed_input);
+	// parse into serperate commands bythe ';' charector
+		// this function is broken
+		//minishell_parse_input(&raw_input, parsed_input);
+		parsed_input = ft_strsplit(raw_input, ';');
+//		ft_printf("in main -: ");
+//		ft_putstrarr(parsed_input);
+//		ft_printf("\n");
 		//execute the command lists
-		free(raw_input);
+		minishell_execute(parsed_input);
+		//free(raw_input);
 //		break_value = minishell_execute(parsed_input);//execute commands(insert string here);
 		//free the command list / array
 		//break statement
