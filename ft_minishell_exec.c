@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 21:29:51 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/23 16:09:44 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/23 16:52:40 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,19 @@ static int		minishell_run_command(char *path, char **args)//take path to binary 
 	if (pid == 0)
 	{
 		execve(path, args, g_env);
-		kill(pid, 0);
+		//kill ?
 	}
 	//else if (error check)
+	else if (pid < 0)
+	{
+		(path) ? free(path) : 0;
+		ft_putstr("Fork filed -- create new process\n");
+		return (-1);
+	}
 	// free ?
+	wait(&pid);
 	if (path)
-		//free(path);
-		;
+		free(path);
 	//	cleanup
 	return (1);//? not sure what i want to do for the eror checking
 }
