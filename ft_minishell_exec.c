@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 21:29:51 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/24 16:55:19 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/25 12:49:35 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,11 @@ static int		minishell_check_builtins(char *str)
 	int	i;
 
 	i = 0;
-	while (g_minishell_builtin_list[i])
+	ft_printf("size of global = : %d\n", sizeof(*g_minishell_builtin_list));
+	while ((unsigned long)i < sizeof(*g_minishell_builtin_list))
 	{
+		if (g_minishell_builtin_list[i][0] == '\0')
+			break ;
 		if (ft_strcmp(str, g_minishell_builtin_list[i]) == 0)
 			return (i);
 		else
