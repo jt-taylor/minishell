@@ -6,7 +6,7 @@
 #    By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/16 19:30:49 by jtaylor           #+#    #+#              #
-#    Updated: 2019/07/23 15:01:42 by jtaylor          ###   ########.fr        #
+#    Updated: 2019/07/24 13:01:31 by jtaylor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,3 +50,7 @@ fclean : clean
 	@make -C libft fclean
 
 re : fclean all
+
+r :
+	rm $(NAME);
+	make all

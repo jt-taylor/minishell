@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:33:50 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/23 14:46:28 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/24 12:30:42 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 # include "get_next_line.h"
 # include "ft_printf.h"
 
+
+// 			Testing zone
+//testing for fork depth
+int		depth;
+
+
 /*
 ** MACROS
 */
@@ -27,7 +33,10 @@
 ** all of the glabal vars
 */
 char					**g_env;
-
+# ifndef minishell_builtin_list
+# define minishell_builtin_list
+extern char					*g_minishell_builtin_list[];
+# endif
 /*
 ** ft_minishell_parse_env.c
 */

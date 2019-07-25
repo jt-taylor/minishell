@@ -6,11 +6,21 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:13:26 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/23 16:09:27 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/24 17:36:49 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char					*g_minishell_builtin_list[] =
+{
+	"cd",
+	"echo",
+	"env",
+	"setenv",
+	"unsetenv",
+	"exit"
+};
 
 /*
 ** functions allowed within the mandatory part
@@ -85,22 +95,26 @@ int				main(int ac, char **argv, char **env)
 		//get input
 		get_next_line(0, &raw_input);
 		//check if input is empty
-//		if (ft_stronly_space(*raw_input))
-//		{
-//			free(raw_input);
-//			continue ;
-//		}
+		ft_printf("input string = '%s'\n", raw_input);
+		if (!(break_value = ft_stronly_space(raw_input)))
+		{
+			free(raw_input);
+			continue ;
+		}
 		// parse input
 	// parse into serperate commands bythe ';' charector
 		// this function is broken
 		//minishell_parse_input(&raw_input, parsed_input);
+		raw_input = ft_strtrim(raw_input);
 		parsed_input = ft_strsplit(raw_input, ';');
 //		ft_printf("in main -: ");
 //		ft_putstrarr(parsed_input);
 //		ft_printf("\n");
 		//execute the command lists
+		//should put this into a loop such that each command is passed as a string
 		minishell_execute(parsed_input);
-		//free(raw_input);
+		free(parsed_input);
+		free(raw_input);
 //		break_value = minishell_execute(parsed_input);//execute commands(insert string here);
 		//free the command list / array
 		//break statement

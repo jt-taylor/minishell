@@ -6,7 +6,7 @@
 #    By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/21 17:04:25 by jtaylor           #+#    #+#              #
-#    Updated: 2019/07/12 16:01:49 by jtaylor          ###   ########.fr        #
+#    Updated: 2019/07/24 16:25:36 by jtaylor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,9 +81,12 @@ SRC = ./ft_atoi.c \
 		get_next_line.c \
 		ft_strsep.c \
 		ft_strtok.c \
-		ft_strcspn.c
+		ft_strcspn.c \
+		ft_stronly_space.c
 
 OBJ = $(SRC:%.c=%.o)
+
+OBJD = $(SRC:%.c=%.o)
 
 LIBHEADER = libft.h
 
@@ -95,6 +98,10 @@ $(NAME): $(OBJ)
 $(OBJ): $(SRC)
 	gcc $(FLAGS) $(SRC)
 	make -C ./ft_printf
+
+debug : $(SRC)
+	gcc -g $(FLAGS) $(SRC)
+	ar -rcs $(NAME) $(OBJD)
 
 clean:
 	rm -f $(OBJ)

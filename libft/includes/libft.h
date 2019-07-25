@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/20 10:51:28 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/12 16:23:34 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/24 15:08:15 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,6 @@ void			ft_freestrarr(char **arr);
 char			*ft_strsep(char **string_in, char *delim);
 char			*ft_strtok(char *s, char *delim);
 int				ft_strcspn(char *string, char *lim);
+int				ft_stronly_space(char *str);
 
 #endif
