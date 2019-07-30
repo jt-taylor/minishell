@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:33:50 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/25 11:30:46 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/29 17:10:50 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define MINISHELL_H
 
 # include <signal.h>
+# include <sys/stat.h>
+# include <errno.h>
 # include "libft.h"
 # include "get_next_line.h"
 # include "ft_printf.h"
@@ -44,6 +46,7 @@ extern char					*g_minishell_builtin_list[];
 */
 void			ft_minishell_printenv(char **env, char c);
 void			ft_minishell_parse_env(char **env);
+char			*get_env_variable(char *var_name);
 
 /*
 ** ft_minishell_prompt.c"

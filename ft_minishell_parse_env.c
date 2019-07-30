@@ -6,12 +6,35 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 16:45:23 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/12 12:49:59 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/29 15:26:34 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
+** this should return the only the path env variable
+*/
+
+char	*get_env_variable(char *var_name)
+{
+	int		i;
+	char	*tmp;
+
+	i = 0;
+	while (g_env[i])
+	{
+		tmp = ft_strjoin(var_name, "=");
+		if (ft_strstart_w_str(g_env[i], tmp))
+		{
+			free(tmp);
+			return (ft_strchr(g_env[i], '=') + 1);
+		}
+		free(tmp);
+		i++;
+	}
+	return (NULL);
+}
 
 /*
 ** this will print the env variables // printenv without the -0 option
@@ -42,6 +65,10 @@ static int		grab_env_len(char **env)
 		;
 	return (i + 1);
 }
+
+/*
+** this parses the env variables into the g_env global array
+*/
 
 void	ft_minishell_parse_env(char **env)
 {

@@ -6,12 +6,17 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:13:26 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/25 12:50:41 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/25 12:56:20 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
+** the null string at the end is required beacause of how I am handling builtins
+** it will access outside the bounds of the array with out it so when you add
+** builtins remember to put them before the ""
+*/
 char					*g_minishell_builtin_list[] =
 {
 	"cd",
