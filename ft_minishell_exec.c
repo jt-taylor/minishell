@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 21:29:51 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/30 12:19:48 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/30 13:51:35 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ static int	check_path(char **command_list, char *command_name)
 			command_name = binary_path;
 			ft_printf("command_name after : %s\n", command_name);
 			//
-			//minishell_run_command(command_name, command_list);
+			minishell_run_command(command_name, command_list);
 			return (1);//check if executable)
 		}
 		i++;
@@ -166,11 +166,11 @@ int		minishell_execute(char **command_list)
 		ft_printf("is a builtin , need to build the builtin\n");
 	}
 	//handle $PATH functions
-	else if (check_path(command_list, str[0]))//check $path)
+	else if (check_path(str, str[0]))//check $path)
 	{
 		//
 		ft_printf("'else if' command string here is %s\n", str[0]);
-		minishell_run_command(str[0], str);
+		//minishell_run_command(str[0], str);
 	}
 	//check permissions with stat / lstat
 	//then call run_command
