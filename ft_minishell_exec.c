@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 21:29:51 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/29 21:06:35 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/30 12:19:48 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,8 @@ static int	check_path(char **command_list, char *command_name)
 			ft_printf("command_name before : %s\n", command_name);
 			command_name = binary_path;
 			ft_printf("command_name after : %s\n", command_name);
+			//
+			//minishell_run_command(command_name, command_list);
 			return (1);//check if executable)
 		}
 		i++;
@@ -176,12 +178,12 @@ int		minishell_execute(char **command_list)
 	//ohh a new errir with gcc unsequenced modifacation and acess to command_list
 		//minishell_run_command(*command_list, command_list++);
 	//ft_printf("%s\n", str[0]);
-	else
-	{
-		//
-		ft_printf("str[0] == '%s'", str[0]);
-		minishell_run_command(str[0], str);
-	}
+//	else
+//	{
+//		//
+//		ft_printf("str[0] == '%s'", str[0]);
+//		minishell_run_command(str[0], str);
+//	}
 	ft_freestrarr(str);
 	return (0);
 }
