@@ -6,7 +6,11 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 21:29:51 by jtaylor           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/07/30 13:51:35 by jtaylor          ###   ########.fr       */
+=======
+/*   Updated: 2019/07/30 12:19:48 by jtaylor          ###   ########.fr       */
+>>>>>>> 23d6257b72df6b095488635ac1988327f336b630
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +137,11 @@ static int	check_path(char **command_list, char *command_name)
 			command_name = binary_path;
 			ft_printf("command_name after : %s\n", command_name);
 			//
+<<<<<<< HEAD
 			minishell_run_command(command_name, command_list);
+=======
+			//minishell_run_command(command_name, command_list);
+>>>>>>> 23d6257b72df6b095488635ac1988327f336b630
 			return (1);//check if executable)
 		}
 		i++;
