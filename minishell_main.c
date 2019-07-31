@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:13:26 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/25 12:56:20 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/30 16:21:16 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int				main(int ac, char **argv, char **env)
 		//get input
 		get_next_line(0, &raw_input);
 		//check if input is empty
-		ft_printf("input string = '%s'\n", raw_input);
+		//ft_printf("input string = '%s'\n", raw_input);
 		if (!(break_value = ft_stronly_space(raw_input)))
 		{
 			free(raw_input);
@@ -118,8 +118,12 @@ int				main(int ac, char **argv, char **env)
 //		ft_printf("\n");
 		//execute the command lists
 		//should put this into a loop such that each command is passed as a string
-		minishell_execute(parsed_input);
-		free(parsed_input);
+		while (*parsed_input && **parsed_input != '\0')
+		{
+			minishell_execute(parsed_input);
+			free(*parsed_input);
+			parsed_input++;
+		}
 		free(raw_input);
 //		break_value = minishell_execute(parsed_input);//execute commands(insert string here);
 		//free the command list / array

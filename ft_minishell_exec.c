@@ -6,11 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 21:29:51 by jtaylor           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/07/30 13:51:35 by jtaylor          ###   ########.fr       */
-=======
-/*   Updated: 2019/07/30 12:19:48 by jtaylor          ###   ########.fr       */
->>>>>>> 23d6257b72df6b095488635ac1988327f336b630
+/*   Updated: 2019/07/30 16:35:17 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +45,8 @@ static int		minishell_run_command(char *path, char **args)//take path to binary 
 	wait(&pid);
 	//	cleanup
 	//testing
-	depth++;
-	printf("\nDepth = %d\n", depth);
+	//depth++;
+	//printf("\nDepth = %d\n", depth);
 	//so the problem here is that we want to kill any of the new forks
 	//but not the original, or just not pass it here if
 	//it won't get to execve();
@@ -67,7 +63,7 @@ static int		minishell_check_builtins(char *str)
 	int	i;
 
 	i = 0;
-	ft_printf("size of global = : %d\n", sizeof(*g_minishell_builtin_list));
+	//ft_printf("size of global = : %d\n", sizeof(*g_minishell_builtin_list));
 	while ((unsigned long)i < sizeof(*g_minishell_builtin_list))
 	{
 		if (g_minishell_builtin_list[i][0] == '\0')
@@ -77,7 +73,7 @@ static int		minishell_check_builtins(char *str)
 		else
 			i++;
 	}
-	ft_printf("size = %d\n", i);
+	//ft_printf("size = %d\n", i);
 	return (-1);
 }
 
@@ -123,7 +119,7 @@ static int	check_path(char **command_list, char *command_name)
 		//	?free
 		if (lstat(binary_path, &s) == -1)
 		{
-			ft_printf("value of errno = %d\nbinary_path = %s\n", errno, binary_path);
+			//ft_printf("value of errno = %d\nbinary_path = %s\n", errno, binary_path);
 			free(binary_path);
 		}
 		//else
@@ -133,15 +129,11 @@ static int	check_path(char **command_list, char *command_name)
 		{
 			//path array should be malloc'd here unless my array_free is going out of the index??
 			//ft_freestrarr(path_array);
-			ft_printf("command_name before : %s\n", command_name);
+			//ft_printf("command_name before : %s\n", command_name);
 			command_name = binary_path;
-			ft_printf("command_name after : %s\n", command_name);
+			//ft_printf("command_name after : %s\n", command_name);
 			//
-<<<<<<< HEAD
 			minishell_run_command(command_name, command_list);
-=======
-			//minishell_run_command(command_name, command_list);
->>>>>>> 23d6257b72df6b095488635ac1988327f336b630
 			return (1);//check if executable)
 		}
 		i++;
@@ -155,7 +147,7 @@ static int	check_path(char **command_list, char *command_name)
 	if (command_list)
 		;
 	//
-	ft_printf("after : %s\n", binary_path);
+	//ft_printf("after : %s\n", binary_path);
 	return (0);
 }
 
@@ -163,9 +155,10 @@ int		minishell_execute(char **command_list)
 {
 	char **str;
 	int		i;
+	struct stat	l;
 	//testing
 	str = ft_strsplit(*command_list, ' ');//here we should split the string into its own array
-	ft_printf("str[0] == '%s'", str[0]);
+	//ft_printf("str[0] == '%s'", str[0]);
 	//handle builtin function
 	if ((i = (minishell_check_builtins(str[0]))) != -1)
 	{
@@ -177,8 +170,9 @@ int		minishell_execute(char **command_list)
 	else if (check_path(str, str[0]))//check $path)
 	{
 		//
-		ft_printf("'else if' command string here is %s\n", str[0]);
+		//ft_printf("'else if' command string here is %s\n", str[0]);
 		//minishell_run_command(str[0], str);
+		;
 	}
 	//check permissions with stat / lstat
 	//then call run_command
@@ -186,11 +180,14 @@ int		minishell_execute(char **command_list)
 	//ohh a new errir with gcc unsequenced modifacation and acess to command_list
 		//minishell_run_command(*command_list, command_list++);
 	//ft_printf("%s\n", str[0]);
-//	else
+	else
 //	{
 //		//
 //		ft_printf("str[0] == '%s'", str[0]);
-//		minishell_run_command(str[0], str);
+		if (lstat(str[0], &l) == 0)
+			minishell_run_command(str[0], str);
+		else
+			ft_dprintf(2, "%s: command not found\n", str[0]);
 //	}
 	ft_freestrarr(str);
 	return (0);
