@@ -6,12 +6,16 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 21:29:51 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/30 16:35:17 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/31 13:18:28 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
+** I would like to use a jumptable for the builtins
+** not sure why i want to do it this way though
+*/
 
 /*
 ** this will fork the process to run the commands
@@ -158,17 +162,23 @@ int		minishell_execute(char **command_list)
 	struct stat	l;
 	//testing
 	str = ft_strsplit(*command_list, ' ');//here we should split the string into its own array
-	//ft_printf("str[0] == '%s'", str[0]);
+	ft_printf("str[0] == '%s'\n", str[0]);
 	//handle builtin function
 	if ((i = (minishell_check_builtins(str[0]))) != -1)
 	{
+		//testing
+		char	*tmp = NULL;
 		//am going to use the return from checkbuiltins as the index in a branch table 
 		//to pass to the builtin function
 		ft_printf("is a builtin , need to build the builtin\n");
+		printf("i == %d\n\n\n", i);
+		printf("cwd == %s\n", getwd(tmp));
+		g_builtin_jumptable[i](str, str[0]);
 	}
 	//handle $PATH functions
 	else if (check_path(str, str[0]))//check $path)
 	{
+		printf("i == %d\n\n\n", i);
 		//
 		//ft_printf("'else if' command string here is %s\n", str[0]);
 		//minishell_run_command(str[0], str);

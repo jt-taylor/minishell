@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:13:26 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/30 16:21:16 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/31 17:43:01 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,44 @@
 ** builtins remember to put them before the ""
 */
 char					*g_minishell_builtin_list[] =
-{
-	"cd",
+{ "cd",
 	"echo",
 	"env",
 	"setenv",
 	"unsetenv",
+	"printenv",
 	"exit",
 	""
 };
 
+//
+//
+void	testing(char **testing, char *str)
+{
+	(void)testing;
+	(void)str;
+	ft_printf("wow remember to remove me later\n");
+}
+
+t_builtin_jumptable		*g_builtin_jumptable[] =
+{
+	//cd
+	testing,
+	//echo
+	testing,
+	//env
+	ft_minishell_printenv,
+	//setenv
+	testing,
+	//unsetenv
+	testing,
+	//printenv
+	ft_minishell_printenv,
+	//exit
+	builtin_exit,
+	//null
+	testing
+};
 /*
 ** functions allowed within the mandatory part
 ** ◦ malloc, free

@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:33:50 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/29 17:10:50 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/31 17:47:37 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ extern char					*g_minishell_builtin_list[];
 /*
 ** ft_minishell_parse_env.c
 */
-void			ft_minishell_printenv(char **env, char c);
+void		ft_minishell_printenv(char **args, char *str);
 void			ft_minishell_parse_env(char **env);
 char			*get_env_variable(char *var_name);
 
@@ -74,4 +74,15 @@ int		minishell_parse_input(char **raw_input, char **parsed);
 
 int		minishell_execute(char **command_list);
 
+/*
+** ft_minishell_exit.c
+*/
+
+void		builtin_exit(char **args, char *str);
+
+/*
+** for builtins && their jumptable
+*/
+typedef void	t_builtin_jumptable(char **args, char *str);
+extern t_builtin_jumptable		*g_builtin_jumptable[];
 #endif

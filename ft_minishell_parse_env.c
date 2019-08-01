@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 16:45:23 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/29 15:26:34 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/07/31 13:15:43 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,35 @@ char	*get_env_variable(char *var_name)
 	return (NULL);
 }
 
-/*
-** this will print the env variables // printenv without the -0 option
+/*h
+void			ft_minishell_printenv(char **env, char c)
+** {
+** 	int		i;
+** 
+** 	i = 0;
+** 	while (env[i])
+** 	{
+** 		ft_putstr(env[i++]);
+** 		write(1, &c, 1);
+** 	}
+** }
 */
 
-void			ft_minishell_printenv(char **env, char c)
+/*
+** this is redudndent , printenv is in the $path
+*/
+
+void		ft_minishell_printenv(char **args, char *str)
 {
 	int		i;
 
-	i = 0;
-	while (env[i])
+	(void)str;
+	(void)args;
+	i = -1;
+	while (g_env[++i])
 	{
-		ft_putstr(env[i++]);
-		write(1, &c, 1);
+		ft_putstr(g_env[i]);
+		write(1, "\n", 1);
 	}
 }
 
