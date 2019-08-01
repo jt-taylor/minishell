@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 21:29:51 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/31 13:18:28 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/01 13:21:44 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,20 +84,23 @@ static int		minishell_check_builtins(char *str)
 static char		*ft_strjoin_path_free(char *s1, char *s2, int opt)
 {
 	int	i;
+	char	*tmp;
 
+	(void)opt;
 	i = 0;
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
 	while (s1[i])
 		i++;
 	if (s1[i - 1] != '/')
-		s1 = ft_strjoin_free(s1, "/", 1);
-	s1 = ft_strjoin_free(s1, s2, opt);
-	return (s1);
+		tmp = ft_strjoin_free(s1, "/", 0);
+	tmp = ft_strjoin_free(tmp, s2, 1);
+	return (tmp);
 }
 
 /*
 ** check $path
+** leaking here ?
 */
 static int	check_path(char **command_list, char *command_name)
 {
@@ -125,6 +128,7 @@ static int	check_path(char **command_list, char *command_name)
 		{
 			//ft_printf("value of errno = %d\nbinary_path = %s\n", errno, binary_path);
 			free(binary_path);
+			;
 		}
 		//else
 		//	free path array
@@ -134,10 +138,12 @@ static int	check_path(char **command_list, char *command_name)
 			//path array should be malloc'd here unless my array_free is going out of the index??
 			//ft_freestrarr(path_array);
 			//ft_printf("command_name before : %s\n", command_name);
-			command_name = binary_path;
 			//ft_printf("command_name after : %s\n", command_name);
 			//
-			minishell_run_command(command_name, command_list);
+			minishell_run_command(binary_path, command_list);
+			//free(path_array);
+			ft_freestrarr(path_array);
+			free(binary_path);
 			return (1);//check if executable)
 		}
 		i++;
@@ -152,6 +158,7 @@ static int	check_path(char **command_list, char *command_name)
 		;
 	//
 	//ft_printf("after : %s\n", binary_path);
+	free(path_array);
 	return (0);
 }
 
@@ -167,12 +174,12 @@ int		minishell_execute(char **command_list)
 	if ((i = (minishell_check_builtins(str[0]))) != -1)
 	{
 		//testing
-		char	*tmp = NULL;
+		//char	*tmp = NULL;
 		//am going to use the return from checkbuiltins as the index in a branch table 
 		//to pass to the builtin function
-		ft_printf("is a builtin , need to build the builtin\n");
-		printf("i == %d\n\n\n", i);
-		printf("cwd == %s\n", getwd(tmp));
+		//ft_printf("is a builtin , need to build the builtin\n");
+		//printf("i == %d\n\n\n", i);
+		//printf("cwd == %s\n", getwd(tmp));
 		g_builtin_jumptable[i](str, str[0]);
 	}
 	//handle $PATH functions
@@ -191,14 +198,14 @@ int		minishell_execute(char **command_list)
 		//minishell_run_command(*command_list, command_list++);
 	//ft_printf("%s\n", str[0]);
 	else
-//	{
+	{
 //		//
 //		ft_printf("str[0] == '%s'", str[0]);
 		if (lstat(str[0], &l) == 0)
 			minishell_run_command(str[0], str);
 		else
 			ft_dprintf(2, "%s: command not found\n", str[0]);
-//	}
+	}
 	ft_freestrarr(str);
 	return (0);
 }

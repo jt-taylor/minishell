@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:13:26 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/31 17:43:01 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/01 13:58:27 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ int		ft_minishell_exec_commands(//)
 int				main(int ac, char **argv, char **env)
 {
 	char	*raw_input;
+	char	*tmp;
 	char	**parsed_input = NULL;//
 	int		break_value;
 
@@ -139,8 +140,9 @@ int				main(int ac, char **argv, char **env)
 	// parse into serperate commands bythe ';' charector
 		// this function is broken
 		//minishell_parse_input(&raw_input, parsed_input);
-		raw_input = ft_strtrim(raw_input);
-		parsed_input = ft_strsplit(raw_input, ';');
+		//pretty sure it is leaking right here
+		tmp = ft_strtrim(raw_input);
+		parsed_input = ft_strsplit(tmp, ';');
 //		ft_printf("in main -: ");
 //		ft_putstrarr(parsed_input);
 //		ft_printf("\n");
@@ -152,7 +154,9 @@ int				main(int ac, char **argv, char **env)
 			free(*parsed_input);
 			parsed_input++;
 		}
+		//free(parsed_input);
 		free(raw_input);
+		free(tmp);
 //		break_value = minishell_execute(parsed_input);//execute commands(insert string here);
 		//free the command list / array
 		//break statement

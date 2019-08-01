@@ -6,7 +6,7 @@
 #    By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/06 11:33:14 by jtaylor           #+#    #+#              #
-#    Updated: 2019/02/11 22:33:47 by jtaylor          ###   ########.fr        #
+#    Updated: 2019/08/01 14:25:44 by jtaylor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,14 +39,14 @@ OBJ += $(addprefix $(LIBFT_PATH),$(LIBFT_SRC_PATH:.c=.o))
 
 CFLAGS = -Wall -Wextra -Werror
 
+%.o : %.c
+	gcc $(CFLAGS) -c $< -o $@ -I ./includes
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	@ar -s $(NAME)
-
-%.o: %.c
-	@gcc $(CFLAGS) -c $< -o $@ -I ./includes/
 
 clean:
 	rm -f $(OBJ)

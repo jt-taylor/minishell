@@ -6,7 +6,7 @@
 #    By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/16 19:30:49 by jtaylor           #+#    #+#              #
-#    Updated: 2019/07/31 17:45:38 by jtaylor          ###   ########.fr        #
+#    Updated: 2019/08/01 14:05:23 by jtaylor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ $(NAME) :
 	@gcc $(FLAGS) $(SRC) -I ./includes ./libft/libft.a ./libft/ft_printf/libftprintf.a -o $(NAME)
 
 debug :
-	@make -C ./libft
+	@make debug -C ./libft
 	@echo "\tBuilding $(NAME) debug executable\n"
 	@gcc $(FLAGS) $(SRC) $(DEBUG_FLAG) -I ./includes ./libft/libft.a ./libft/ft_printf/libftprintf.a -o $(NAME)
 

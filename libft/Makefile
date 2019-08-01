@@ -6,12 +6,12 @@
 #    By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/21 17:04:25 by jtaylor           #+#    #+#              #
-#    Updated: 2019/07/25 18:21:40 by jtaylor          ###   ########.fr        #
+#    Updated: 2019/08/01 14:20:49 by jtaylor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-FLAGS = -Wall -Wextra -Werror -Iincludes -c
+FLAGS = -Wall -Wextra -Werror -I includes -c
 
 SRC = ./ft_atoi.c \
 		ft_bzero.c \
@@ -101,7 +101,8 @@ $(OBJ): $(SRC)
 	make -C ./ft_printf
 
 debug : $(SRC)
-	gcc -g $(FLAGS) $(SRC)
+	gcc -g3 $(FLAGS) $(SRC)
+	make -C ./ft_printf
 	ar -rcs $(NAME) $(OBJD)
 
 clean:
