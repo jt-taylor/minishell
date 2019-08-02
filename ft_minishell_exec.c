@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 21:29:51 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/01 13:21:44 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/01 16:58:25 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ static int	check_path(char **command_list, char *command_name)
 		;
 	//
 	//ft_printf("after : %s\n", binary_path);
-	free(path_array);
+	ft_freestrarr(path_array);
 	return (0);
 }
 

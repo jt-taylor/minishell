@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:13:26 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/01 13:58:27 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/01 21:13:02 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ t_builtin_jumptable		*g_builtin_jumptable[] =
 /*
 ** See Stephan Brennan's blogpost 'write a shell in c' 16 Jan 2015
 */
+
 /*
 ** so the structure for the main should look similar to this
 ** <main>
@@ -114,6 +115,7 @@ int				main(int ac, char **argv, char **env)
 	char	*raw_input;
 	char	*tmp;
 	char	**parsed_input = NULL;//
+	char	**generic_pointer;
 	int		break_value;
 
 	// load config && envirement variables from input
@@ -143,6 +145,7 @@ int				main(int ac, char **argv, char **env)
 		//pretty sure it is leaking right here
 		tmp = ft_strtrim(raw_input);
 		parsed_input = ft_strsplit(tmp, ';');
+		generic_pointer = parsed_input;
 //		ft_printf("in main -: ");
 //		ft_putstrarr(parsed_input);
 //		ft_printf("\n");
@@ -151,12 +154,13 @@ int				main(int ac, char **argv, char **env)
 		while (*parsed_input && **parsed_input != '\0')
 		{
 			minishell_execute(parsed_input);
-			free(*parsed_input);
 			parsed_input++;
 		}
 		//free(parsed_input);
 		free(raw_input);
 		free(tmp);
+		ft_freestrarr(generic_pointer);
+		//free(parsed_input);
 //		break_value = minishell_execute(parsed_input);//execute commands(insert string here);
 		//free the command list / array
 		//break statement

@@ -6,7 +6,7 @@
 #    By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/21 17:04:25 by jtaylor           #+#    #+#              #
-#    Updated: 2019/08/01 14:20:49 by jtaylor          ###   ########.fr        #
+#    Updated: 2019/08/01 16:50:24 by jtaylor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,23 +94,27 @@ LIBHEADER = libft.h
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar -rcs $(NAME) $(OBJ)
+	@ar -rcs $(NAME) $(OBJ)
+	@echo "\tBuilding libft.a"
 
 $(OBJ): $(SRC)
-	gcc $(FLAGS) $(SRC)
-	make -C ./ft_printf
+	@gcc $(FLAGS) $(SRC)
+	@echo "\tBuilding libft .o files"
+	@make -C ./ft_printf
 
 debug : $(SRC)
-	gcc -g3 $(FLAGS) $(SRC)
-	make -C ./ft_printf
-	ar -rcs $(NAME) $(OBJD)
+	@gcc -g3 $(FLAGS) $(SRC)
+	@make -C ./ft_printf
+	@ar -rcs $(NAME) $(OBJD)
 
 clean:
-	rm -f $(OBJ)
-	make clean -C ./ft_printf
+	@rm -f $(OBJ)
+	@make clean -C ./ft_printf
+	@echo "\tRemoving Libft .o files"
 
 fclean: clean
-	rm -f $(NAME)
-	make fclean -C ./ft_printf
+	@rm -f $(NAME)
+	@echo "\tRemoving libft.a\n"
+	@make fclean -C ./ft_printf
 
 re: fclean all
