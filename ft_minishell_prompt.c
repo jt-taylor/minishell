@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 18:53:02 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/17 17:24:21 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/02 15:19:19 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ void	ft_minishell_exit_shell(void)
 
 void		ft_shell_print_prompt(void)
 {
-	ft_printf("$This is a simple prompt\t->");
+	ft_printf("a simple \"$>\"\t->");
 }
