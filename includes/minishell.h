@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:33:50 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/03 13:10:41 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/04 11:44:48 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,11 @@ int		minishell_execute(char **command_list);
 */
 
 void		builtin_exit(char **args, char *str);
+
+/*
+** ft_minishell_unsetenv.c
+*/
+void		builtin_unsetenv(char **args, char *value);
 
 /*
 ** ft_minishell_env

@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 21:29:51 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/01 16:58:25 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/04 11:43:03 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ int		minishell_execute(char **command_list)
 	struct stat	l;
 	//testing
 	str = ft_strsplit(*command_list, ' ');//here we should split the string into its own array
-	ft_printf("str[0] == '%s'\n", str[0]);
+	//ft_printf("str[0] == '%s'\n", str[0]);
 	//handle builtin function
 	if ((i = (minishell_check_builtins(str[0]))) != -1)
 	{

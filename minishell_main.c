@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:13:26 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/03 13:08:31 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/04 11:43:41 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_builtin_jumptable		*g_builtin_jumptable[] =
 	//setenv
 	builtin_setenv,
 	//unsetenv
-	testing,
+	builtin_unsetenv,
 	//printenv
 	ft_minishell_printenv,
 	//exit

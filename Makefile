@@ -6,7 +6,7 @@
 #    By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/16 19:30:49 by jtaylor           #+#    #+#              #
-#    Updated: 2019/08/03 13:11:04 by jtaylor          ###   ########.fr        #
+#    Updated: 2019/08/04 11:37:13 by jtaylor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC =	ft_minishell_exec.c \
 		ft_shell_process_input.c \
 		ft_minishell_exit.c \
 		ft_minishell_env.c \
+		ft_minishell_unsetenv.c \
 		minishell_main.c
 
 .PHONY = all clean fclean re

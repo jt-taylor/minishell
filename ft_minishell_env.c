@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 17:27:37 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/03 21:46:17 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/04 11:42:52 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ static char		*env_set_value(char *index, char *value)
 */
 static char			**ft_env_array_realloc(char **args, char *value)
 {
-	//
-	ft_printf("made it to the realloc g_env");
 	char	**tmp;
 	int		i;
 
@@ -87,7 +85,7 @@ static void		ft_check_env_var(char **args, char *value)
 		if (ft_strstart_w_str(g_env[i], args[1]))
 	{
 			//set that string to the new value
-			ft_printf("g_env == %s / arg[1] == %s\n", g_env[i], args[1]);
+			//ft_printf("g_env == %s / arg[1] == %s\n", g_env[i], args[1]);
 			g_env[i] = env_set_value(g_env[i], value);
 			return ;
 		}
@@ -107,7 +105,7 @@ static void		ft_check_env_var(char **args, char *value)
 
 void		builtin_setenv(char **arg, char *str)
 {
-	ft_printf("made into function\n");
+	//ft_printf("made into function\n");
 	char	*null_string = "";
 
 	(void)str;
