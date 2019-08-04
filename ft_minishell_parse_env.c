@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 16:45:23 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/03 14:09:28 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/03 14:47:07 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	ft_minishell_parse_env(char **env)
 	int		i;
 
 	i = -1;
+	//do we need to malloc a global , internet says global bad which is
 	g_env = (char **)malloc(sizeof(char *) * (grab_env_len(env) + 1));
 	while (env[++i])
 		if (!(g_env[i] = ft_strdup(env[i])))

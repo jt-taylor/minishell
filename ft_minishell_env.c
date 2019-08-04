@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 17:27:37 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/03 14:31:15 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/03 21:46:17 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,34 @@ static char		*env_set_value(char *index, char *value)
 	return (index);
 }
 
+/*
+** reallocates a new char ** to hold an aditional string for the enc array
+*/
+static char			**ft_env_array_realloc(char **args, char *value)
+{
+	//
+	ft_printf("made it to the realloc g_env");
+	char	**tmp;
+	int		i;
+
+	i = 0;
+	while (g_env[i])
+		i++;
+	tmp = (char **)malloc(sizeof(char *) * (i + 2));
+	i = 0;
+	while (g_env[i])
+	{
+		if (!(tmp[i] = ft_strdup(g_env[i])))
+			//erorr allocating for the envirement array
+			;
+		i++;
+	}
+	ft_freestrarr(g_env);
+	tmp[i] = ft_strjoin(args[1], "=");
+	tmp[i] = ft_strjoin_free(tmp[i], value, 1);
+	return (tmp);
+}
+
 static void		ft_check_env_var(char **args, char *value)
 {
 	int		i;
@@ -68,6 +96,7 @@ static void		ft_check_env_var(char **args, char *value)
 	//need to remalloc the array to hold the new string
 	//make a reallocate function for the array;
 	//and then add the string to the end of the array;
+	g_env = ft_env_array_realloc(args, value);
 }
 
 /*
