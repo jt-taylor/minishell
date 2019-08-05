@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 10:43:44 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/04 11:45:22 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/05 13:22:06 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,25 @@ void		builtin_unsetenv(char **args, char *value)
 
 	(void)value;
 	i = 0;
-	while (g_env[i])
+	if (value == args[1])
 	{
-		if (ft_strstart_w_str(g_env[i], args[1]))
-			break ;
-		i++;
+		while (g_env[i])
+		{
+			if (ft_strstart_w_str(g_env[i], args[1]))
+				break ;
+			i++;
+		}
 	}
-	//
+	else
+	{
+		while (g_env[i])
+		{
+			if (ft_strstart_w_str(g_env[i], value))
+				break ;
+			i++;
+		}
+	}
 	//ft_printf("args[1] == %s\ng_env[i] == %s\n", args[1], g_env[i]);
 	if (g_env[i])
 		g_env = ft_env_array_remove_realloc(i);
-	else
-		return ;
 }

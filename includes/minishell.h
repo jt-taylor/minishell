@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:33:50 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/04 11:44:48 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/05 11:32:26 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,20 @@ void		builtin_exit(char **args, char *str);
 void		builtin_unsetenv(char **args, char *value);
 
 /*
+** ft_minishell_builtin_env.c
+*/
+void	builtin_env(char **args, char *value);
+
+/*
 ** ft_minishell_env
 */
 
 void		builtin_setenv(char **arg, char *str);
+
+/*
+** ft_minishell_cd.c
+*/
+void		builtin_cd(char **args, char *str);
 
 /*
 ** for builtins && their jumptable
