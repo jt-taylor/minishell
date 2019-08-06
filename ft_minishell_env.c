@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 17:27:37 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/04 12:04:13 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/06 16:26:49 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char		*env_set_value(char *index, char *value)
 	tmp = ft_strjoin_free(tmp, "=", 1);
 	index = ft_strjoin_free(tmp, value, 1);
 	//test
-	ft_printf("new_str == %s\n", index);
+	//ft_printf("new_str == %s\n", index);
 	return (index);
 }
 

@@ -6,11 +6,15 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 10:43:44 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/05 13:22:06 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/06 16:04:31 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/*
+** so I broke this somehow , not really sure donig what
+*/
 
 static char		**ft_env_array_remove_realloc(int index)
 {
@@ -51,6 +55,7 @@ void		builtin_unsetenv(char **args, char *value)
 	{
 		while (g_env[i])
 		{
+			// revert the change to this function , skips over the proper string
 			if (ft_strstart_w_str(g_env[i], args[1]))
 				break ;
 			i++;
@@ -60,7 +65,7 @@ void		builtin_unsetenv(char **args, char *value)
 	{
 		while (g_env[i])
 		{
-			if (ft_strstart_w_str(g_env[i], value))
+			if (ft_strstart_w_str(g_env[i], args[1]))
 				break ;
 			i++;
 		}

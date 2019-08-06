@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 21:29:51 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/05 18:24:44 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/06 14:55:19 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,7 @@ int		minishell_execute(char **command_list)
 //		//
 //		ft_printf("str[0] == '%s'", str[0]);
 		if (lstat(str[0], &l) == 0)
-			//this causes problems if something that
+			//this causes something like "tmp" to not output command not found
 			minishell_run_command(str[0], str);
 		else
 			ft_dprintf(2, "%s: command not found\n", str[0]);
