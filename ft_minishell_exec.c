@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 21:29:51 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/05 13:28:42 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/05 18:24:44 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,33 +28,19 @@ static int		minishell_run_command(char *path, char **args)//take path to binary 
 {
 	pid_t	pid;
 
-	//fork
 	pid = fork();
-	//run signal for the forked process
 	signal(SIGINT, process_signal_handle);
-	// if pid == 0 (ie is forked process)
-	//		run it with execve
 	if (pid == 0)
 	{
-		execve(path, args, g_env);
+		(execve(path, args, g_env) == -1) ? exit(0) : 0;
 		//kill ?
 	}
-	//else if (error check)
 	else if (pid < 0)
 	{
 		ft_putstr("Fork filed -- create new process\n");
 		return (-1);
 	}
-	// free ?
 	wait(&pid);
-	//	cleanup
-	//testing
-	//depth++;
-	//printf("\nDepth = %d\n", depth);
-	//so the problem here is that we want to kill any of the new forks
-	//but not the original, or just not pass it here if
-	//it won't get to execve();
-	//kill(pid, SIGKILL);
 	return (1);//? not sure what i want to do for the eror checking
 }
 
@@ -67,7 +53,6 @@ static int		minishell_check_builtins(char *str)
 	int	i;
 
 	i = 0;
-	//ft_printf("size of global = : %d\n", sizeof(*g_minishell_builtin_list));
 	while ((unsigned long)i < sizeof(*g_minishell_builtin_list))
 	{
 		if (g_minishell_builtin_list[i][0] == '\0')
@@ -77,7 +62,6 @@ static int		minishell_check_builtins(char *str)
 		else
 			i++;
 	}
-	//ft_printf("size = %d\n", i);
 	return (-1);
 }
 
@@ -102,6 +86,7 @@ static char		*ft_strjoin_path_free(char *s1, char *s2, int opt)
 ** check $path
 ** leaking here ?
 */
+
 static int	check_path(char **command_list, char *command_name)
 {
 	int			i;
@@ -185,7 +170,7 @@ int		minishell_execute(char **command_list)
 	//handle $PATH functions
 	else if (check_path(str, str[0]))//check $path)
 	{
-		printf("i == %d\n\n\n", i);
+		//printf("i == %d\n\n\n", i);
 		//
 		//ft_printf("'else if' command string here is %s\n", str[0]);
 		//minishell_run_command(str[0], str);
@@ -202,6 +187,7 @@ int		minishell_execute(char **command_list)
 //		//
 //		ft_printf("str[0] == '%s'", str[0]);
 		if (lstat(str[0], &l) == 0)
+			//this causes problems if something that
 			minishell_run_command(str[0], str);
 		else
 			ft_dprintf(2, "%s: command not found\n", str[0]);
