@@ -6,12 +6,16 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 13:03:46 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/05 18:31:09 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/05 21:17:34 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
+**	sometimes an input isn't malloc'ed here ?
+**	not sure why but i think it is just for this
+*/
 static void		set_dir_env_value(char *path)
 {
 	char	**tmp;
@@ -20,12 +24,14 @@ static void		set_dir_env_value(char *path)
 	tmp[0] = ft_strdup(path);
 	tmp[1] = ft_strdup("OLDPWD");
 	tmp[2] = ft_strdup(get_env_variable("PWD"));
+	tmp[3] = NULL;
 	builtin_setenv(tmp, tmp[0]);
 	ft_freestrarr(tmp);
 	tmp = (char **)malloc(sizeof(char *) * (3));
 	tmp[0] = ft_strdup(path);
 	tmp[1] = ft_strdup("PWD");
 	tmp[2] = (char *)malloc(sizeof(char) * (PATH_MAX + 1));
+	tmp[3] = NULL;
 	chdir(path);
 	getcwd(tmp[2], PATH_MAX);
 	builtin_setenv(tmp, tmp[0]);
