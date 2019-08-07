@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 10:43:44 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/06 16:04:31 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/07 14:24:51 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static char		**ft_env_array_remove_realloc(int index)
 			continue;
 		}
 		if (!(tmp[j] = ft_strdup(g_env[i])))
-			// error allocating
 			;
 		i++;
 		j++;
@@ -45,7 +44,7 @@ static char		**ft_env_array_remove_realloc(int index)
 	return (tmp);
 }
 
-void		builtin_unsetenv(char **args, char *value)
+void			builtin_unsetenv(char **args, char *value)
 {
 	int		i;
 
@@ -55,7 +54,6 @@ void		builtin_unsetenv(char **args, char *value)
 	{
 		while (g_env[i])
 		{
-			// revert the change to this function , skips over the proper string
 			if (ft_strstart_w_str(g_env[i], args[1]))
 				break ;
 			i++;
@@ -70,7 +68,6 @@ void		builtin_unsetenv(char **args, char *value)
 			i++;
 		}
 	}
-	//ft_printf("args[1] == %s\ng_env[i] == %s\n", args[1], g_env[i]);
 	if (g_env[i])
 		g_env = ft_env_array_remove_realloc(i);
 }

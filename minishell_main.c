@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:13:26 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/05 11:30:35 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/07 13:43:58 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 ** it will access outside the bounds of the array with out it so when you add
 ** builtins remember to put them before the ""
 */
+
 char					*g_minishell_builtin_list[] =
 { "cd",
 	"echo",
@@ -28,34 +29,36 @@ char					*g_minishell_builtin_list[] =
 	""
 };
 
-//
-//
-void	testing(char **testing, char *str)
+void					testing(char **testing, char *str)
 {
 	(void)testing;
 	(void)str;
 	ft_printf("wow remember to remove me later\n");
 }
 
+/*
+** cd,
+** echo,
+** env,
+** setenv,
+** unsetenv,
+** printenv,
+** exit,
+** NULL,
+*/
+
 t_builtin_jumptable		*g_builtin_jumptable[] =
 {
-	//cd
 	builtin_cd,
-	//echo
 	testing,
-	//env
 	builtin_env,
-	//setenv
 	builtin_setenv,
-	//unsetenv
 	builtin_unsetenv,
-	//printenv
 	ft_minishell_printenv,
-	//exit
 	builtin_exit,
-	//null
 	testing
 };
+
 /*
 ** functions allowed within the mandatory part
 ** ◦ malloc, free
@@ -85,7 +88,7 @@ t_builtin_jumptable		*g_builtin_jumptable[] =
 ** 		return (Success);
 ** </main>
 **
-** and the loop should look like this 
+** and the loop should look like this
 ** <loop>
 ** 	while (command return value)
 ** 		printf("$>")
@@ -95,81 +98,62 @@ t_builtin_jumptable		*g_builtin_jumptable[] =
 ** </loop>
 */
 
-
 /*
 ** this basically just loops through the array of strings and will execute
 ** the command contained within each one , this is to handle the
-int		ft_minishell_exec_commands(//)
-{
-
-}
 */
+
+static int				minishell_main_loop(char *raw_input, char *tmp,
+		char **parsed_input, char **generic_pointer)
+{
+	int		break_value;
+
+	break_value = 1;
+	ft_shell_print_prompt();
+	signal(SIGINT, minishell_signal_handle);
+	get_next_line(0, &raw_input);
+	if (!(break_value = ft_stronly_space(raw_input)))
+	{
+		free(raw_input);
+		return (1);
+	}
+	tmp = ft_strtrim(raw_input);
+	parsed_input = ft_strsplit(tmp, ';');
+	generic_pointer = parsed_input;
+	while (*parsed_input && **parsed_input != '\0')
+	{
+		minishell_execute(parsed_input);
+		parsed_input++;
+	}
+	free(raw_input);
+	free(tmp);
+	ft_freestrarr(generic_pointer);
+	return (break_value);
+}
 
 /*
 ** the third option is implementation specific , is a points to an array of
 ** 		the host env variables , it is also accessible with the global var
 */
 
-int				main(int ac, char **argv, char **env)
+int						main(int ac, char **argv, char **env)
 {
 	char	*raw_input;
 	char	*tmp;
-	char	**parsed_input = NULL;//
+	char	**parsed_input;
 	char	**generic_pointer;
-	int		break_value;
 
-	// load config && envirement variables from input
+	raw_input = NULL;
+	tmp = NULL;
+	parsed_input = NULL;
+	generic_pointer = NULL;
 	ft_minishell_parse_env(env);
-	// test
-		//ft_minishell_printenv(g_env, '\n');
-	//run the command loop
-	//testing
-	break_value = 1;
 	while (1)
 	{
-		ft_shell_print_prompt();
-		signal(SIGINT, minishell_signal_handle);
-		//get input
-		get_next_line(0, &raw_input);
-		//check if input is empty
-		//ft_printf("input string = '%s'\n", raw_input);
-		if (!(break_value = ft_stronly_space(raw_input)))
-		{
-			free(raw_input);
-			continue ;
-		}
-		// parse input
-	// parse into serperate commands bythe ';' charector
-		// this function is broken
-		//minishell_parse_input(&raw_input, parsed_input);
-		//pretty sure it is leaking right here
-		tmp = ft_strtrim(raw_input);
-		parsed_input = ft_strsplit(tmp, ';');
-		generic_pointer = parsed_input;
-//		ft_printf("in main -: ");
-//		ft_putstrarr(parsed_input);
-//		ft_printf("\n");
-		//execute the command lists
-		//should put this into a loop such that each command is passed as a string
-		while (*parsed_input && **parsed_input != '\0')
-		{
-			minishell_execute(parsed_input);
-			parsed_input++;
-		}
-		//free(parsed_input);
-		free(raw_input);
-		free(tmp);
-		ft_freestrarr(generic_pointer);
-		//free(parsed_input);
-//		break_value = minishell_execute(parsed_input);//execute commands(insert string here);
-		//free the command list / array
-		//break statement
-		if (break_value < 0)
+		if (minishell_main_loop(raw_input, tmp, parsed_input,
+				generic_pointer) < 0)
 			break ;
 	}
-	//free global env array
-	//more cleanup ?
-	//testing
 	if (ac)
 		;
 	if (argv[1])

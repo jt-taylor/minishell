@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 17:55:35 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/21 18:28:44 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/07 14:01:03 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@
 ** explain how this works much better than i would have
 */
 
-/*
-** this will handle signal for the 
-*/
 void		process_signal_handle(int sig)
 {
 	if (sig == SIGINT)

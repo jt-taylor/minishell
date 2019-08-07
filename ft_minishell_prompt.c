@@ -6,13 +6,13 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 18:53:02 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/02 15:19:19 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/07 14:30:46 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_minishell_exit_shell(void)
+void		ft_minishell_exit_shell(void)
 {
 	ft_freestrarr(g_env);
 	write(1, "\n", 1);

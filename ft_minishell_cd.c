@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 13:03:46 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/06 16:23:58 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/07 14:32:17 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 **	sometimes an input isn't malloc'ed here ?
 **	not sure why but i think it is just for this
 */
+
 static void		set_dir_env_value(char *path)
 {
 	char	**tmp;
@@ -44,8 +45,6 @@ static void		minishell_cd_access_dir(char *path)
 	struct stat	s;
 
 	msg = NULL;
-	//do I wanna use stat or lstat ?
-	// maybe i need to invert this ,? doesn't actually run lstat on directories ???
 	if ((access(path, F_OK) != -1))
 		lstat(path, &s);
 	else
@@ -68,9 +67,10 @@ static void		minishell_cd_access_dir(char *path)
 **
 ** fix for the relative path
 */
-void		builtin_cd(char **args, char *str)
+
+void			builtin_cd(char **args, char *str)
 {
-	int		i;
+	int			i;
 	char		*path;
 
 	(void)str;
@@ -86,12 +86,11 @@ void		builtin_cd(char **args, char *str)
 		else
 		{
 			path = ft_strjoin_free(get_env_variable("PWD"), "/", 0);
-			path = ft_strjoin_free(path, args[i], 1);//ft_strdup(args[i]);
+			path = ft_strjoin_free(path, args[i], 1);
 		}
 	}
 	else
 		path = ft_strdup(get_env_variable("HOME"));
-	//check permission && file exists
 	minishell_cd_access_dir(path);
 	free(path);
 }

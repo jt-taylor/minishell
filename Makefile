@@ -6,7 +6,7 @@
 #    By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/16 19:30:49 by jtaylor           #+#    #+#              #
-#    Updated: 2019/08/05 11:31:18 by jtaylor          ###   ########.fr        #
+#    Updated: 2019/08/07 14:31:25 by jtaylor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,9 @@ FLAGS = -Wall -Wextra -Werror -I ./libft/includes
 DEBUG_FLAG = -g3
 
 SRC =	ft_minishell_exec.c \
-		ft_minishell_find_executable.c \
-		ft_minishell_loop.c \
 		ft_minishell_parse_env.c \
 		ft_minishell_prompt.c \
 		ft_minishell_signal.c \
-		ft_shell_process_input.c \
 		ft_minishell_exit.c \
 		ft_minishell_env.c \
 		ft_minishell_unsetenv.c \

@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 16:45:23 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/03 14:47:07 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/07 14:29:46 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** this should return the only the path env variable
 */
 
-char	*get_env_variable(char *var_name)
+char		*get_env_variable(char *var_name)
 {
 	int		i;
 	char	*tmp;
@@ -36,11 +36,11 @@ char	*get_env_variable(char *var_name)
 	return (NULL);
 }
 
-/*h
-void			ft_minishell_printenv(char **env, char c)
+/*
+** void			ft_minishell_printenv(char **env, char c)
 ** {
 ** 	int		i;
-** 
+**
 ** 	i = 0;
 ** 	while (env[i])
 ** 	{
@@ -72,7 +72,7 @@ void		ft_minishell_printenv(char **args, char *str)
 ** returns the length of the shell envirement
 */
 
-static int		grab_env_len(char **env)
+static int	grab_env_len(char **env)
 {
 	int	i;
 
@@ -86,12 +86,11 @@ static int		grab_env_len(char **env)
 ** this parses the env variables into the g_env global array
 */
 
-void	ft_minishell_parse_env(char **env)
+void		ft_minishell_parse_env(char **env)
 {
 	int		i;
 
 	i = -1;
-	//do we need to malloc a global , internet says global bad which is
 	g_env = (char **)malloc(sizeof(char *) * (grab_env_len(env) + 1));
 	while (env[++i])
 		if (!(g_env[i] = ft_strdup(env[i])))

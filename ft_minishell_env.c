@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 17:27:37 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/06 16:26:49 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/07 14:39:05 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@
 /*
 ** this will read everythipng preceding the '=' from index into a temp string
 ** append the '=' to the temp string,
-** append the 
+** append the
 */
+
 static char		*env_set_value(char *index, char *value)
 {
 	char	*tmp;
@@ -44,15 +45,14 @@ static char		*env_set_value(char *index, char *value)
 	free(index);
 	tmp = ft_strjoin_free(tmp, "=", 1);
 	index = ft_strjoin_free(tmp, value, 1);
-	//test
-	//ft_printf("new_str == %s\n", index);
 	return (index);
 }
 
 /*
 ** reallocates a new char ** to hold an aditional string for the enc array
 */
-static char			**ft_env_array_realloc(char **args, char *value)
+
+static char		**ft_env_array_realloc(char **args, char *value)
 {
 	char	**tmp;
 	int		i;
@@ -65,7 +65,6 @@ static char			**ft_env_array_realloc(char **args, char *value)
 	while (g_env[i])
 	{
 		if (!(tmp[i] = ft_strdup(g_env[i])))
-			//erorr allocating for the envirement array
 			;
 		i++;
 	}
@@ -83,17 +82,12 @@ static void		ft_check_env_var(char **args, char *value)
 	while (g_env[i])
 	{
 		if (ft_strstart_w_str(g_env[i], args[1]))
-	{
-			//set that string to the new value
-			//ft_printf("g_env == %s / arg[1] == %s\n", g_env[i], args[1]);
+		{
 			g_env[i] = env_set_value(g_env[i], value);
 			return ;
 		}
 		i++;
 	}
-	//need to remalloc the array to hold the new string
-	//make a reallocate function for the array;
-	//and then add the string to the end of the array;
 	g_env = ft_env_array_realloc(args, value);
 }
 
@@ -103,20 +97,16 @@ static void		ft_check_env_var(char **args, char *value)
 ** to store the var value pairs
 */
 
-void		builtin_setenv(char **arg, char *str)
+void			builtin_setenv(char **arg, char *str)
 {
-	//ft_printf("made into function\n");
-	char	*null_string = "";
+	char	*null_string;
 
+	null_string = NULL;
 	(void)str;
 	if (!arg[1])
-		//handle no args functions ->printenv with no args
 		ft_minishell_printenv(arg, "");
 	else if (!arg[2])
-		//pass to function with null as value
-		// or just make str = "";
 		ft_check_env_var(arg, null_string);
 	else
-		//pass to function with argv[2] as value
 		ft_check_env_var(arg, arg[2]);
 }

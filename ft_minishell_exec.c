@@ -6,25 +6,13 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 21:29:51 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/06 14:55:19 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/07 14:23:59 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-** I would like to use a jumptable for the builtins
-** not sure why i want to do it this way though
-*/
-
-/*
-** this will fork the process to run the commands
-** this forks no matter what so all of the validation for the execve executables
-** has to happen before this is called
-**
-*/
-
-static int		minishell_run_command(char *path, char **args)//take path to binary && arguments)
+static int		minishell_run_command(char *path, char **args)
 {
 	pid_t	pid;
 
@@ -33,7 +21,6 @@ static int		minishell_run_command(char *path, char **args)//take path to binary 
 	if (pid == 0)
 	{
 		(execve(path, args, g_env) == -1) ? exit(0) : 0;
-		//kill ?
 	}
 	else if (pid < 0)
 	{
@@ -41,7 +28,7 @@ static int		minishell_run_command(char *path, char **args)//take path to binary 
 		return (-1);
 	}
 	wait(&pid);
-	return (1);//? not sure what i want to do for the eror checking
+	return (1);
 }
 
 /*
@@ -67,7 +54,7 @@ static int		minishell_check_builtins(char *str)
 
 static char		*ft_strjoin_path_free(char *s1, char *s2, int opt)
 {
-	int	i;
+	int		i;
 	char	*tmp;
 
 	(void)opt;
@@ -84,10 +71,9 @@ static char		*ft_strjoin_path_free(char *s1, char *s2, int opt)
 
 /*
 ** check $path
-** leaking here ?
 */
 
-static int	check_path(char **command_list, char *command_name)
+static int		check_path(char **command_list, char *command_name)
 {
 	int			i;
 	char		*binary_path;
@@ -95,99 +81,45 @@ static int	check_path(char **command_list, char *command_name)
 	struct stat	s;
 
 	path_array = ft_strsplit(get_env_variable("PATH"), ':');
-	i = 0;
-	while (path_array && path_array[i])
+	i = -1;
+	while (path_array && path_array[++i])
 	{
-		//if command is found in path binary_path = command[0]
-		//	/bin/absolute/path
 		if (ft_strstart_w_str(command_name, path_array[i]))
 			binary_path = ft_strdup(command_name);
-		//else
-		//	append command[0] to path then check
 		else
 			binary_path = ft_strjoin_path_free(path_array[i], command_name, 0);
-			;//binary_path = strjoin paths (path[i] && command_name);
-		//lstat
-		//	?free
 		if (lstat(binary_path, &s) == -1)
-		{
-			//ft_printf("value of errno = %d\nbinary_path = %s\n", errno, binary_path);
 			free(binary_path);
-			;
-		}
-		//else
-		//	free path array
-		//	return (check if executable);
 		else
 		{
-			//path array should be malloc'd here unless my array_free is going out of the index??
-			//ft_freestrarr(path_array);
-			//ft_printf("command_name before : %s\n", command_name);
-			//ft_printf("command_name after : %s\n", command_name);
-			//
 			minishell_run_command(binary_path, command_list);
-			//free(path_array);
 			ft_freestrarr(path_array);
 			free(binary_path);
-			return (1);//check if executable)
+			return (1);
 		}
-		i++;
 	}
-	//free path_array;
-	//Pretty sure either my free path array is broken ?? or im not allocating for the array in strsplit??
-	//for right now i am just not gonna free it , remember to go back and free everything otherwise
-	//extended use will break it 
-	//ft_freestrarr(path_array);
-	//test
-	if (command_list)
-		;
-	//
-	//ft_printf("after : %s\n", binary_path);
 	ft_freestrarr(path_array);
 	return (0);
 }
 
-int		minishell_execute(char **command_list)
+int				minishell_execute(char **command_list)
 {
-	char **str;
-	int		i;
+	char		**str;
+	int			i;
 	struct stat	l;
-	//testing
-	str = ft_strsplit(*command_list, ' ');//here we should split the string into its own array
-	//ft_printf("str[0] == '%s'\n", str[0]);
-	//handle builtin function
+
+	str = ft_strsplit(*command_list, ' ');
 	if ((i = (minishell_check_builtins(str[0]))) != -1)
 	{
-		//testing
-		//char	*tmp = NULL;
-		//am going to use the return from checkbuiltins as the index in a branch table 
-		//to pass to the builtin function
-		//ft_printf("is a builtin , need to build the builtin\n");
-		//printf("i == %d\n\n\n", i);
-		//printf("cwd == %s\n", getwd(tmp));
 		g_builtin_jumptable[i](str, str[0]);
 	}
-	//handle $PATH functions
-	else if (check_path(str, str[0]))//check $path)
+	else if (check_path(str, str[0]))
 	{
-		//printf("i == %d\n\n\n", i);
-		//
-		//ft_printf("'else if' command string here is %s\n", str[0]);
-		//minishell_run_command(str[0], str);
 		;
 	}
-	//check permissions with stat / lstat
-	//then call run_command
-	//testing
-	//ohh a new errir with gcc unsequenced modifacation and acess to command_list
-		//minishell_run_command(*command_list, command_list++);
-	//ft_printf("%s\n", str[0]);
 	else
 	{
-//		//
-//		ft_printf("str[0] == '%s'", str[0]);
 		if (lstat(str[0], &l) == 0)
-			//this causes something like "tmp" to not output command not found
 			minishell_run_command(str[0], str);
 		else
 			ft_dprintf(2, "%s: command not found\n", str[0]);
