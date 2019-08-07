@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 17:27:37 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/07 14:39:05 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/07 15:13:28 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void			builtin_setenv(char **arg, char *str)
 {
 	char	*null_string;
 
-	null_string = NULL;
+	null_string = "";
 	(void)str;
 	if (!arg[1])
 		ft_minishell_printenv(arg, "");

@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 16:45:23 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/07 14:29:46 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/07 15:01:43 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,5 @@ void		ft_minishell_parse_env(char **env)
 	while (env[++i])
 		if (!(g_env[i] = ft_strdup(env[i])))
 			ft_minishell_exit_shell();
+	g_env[i] = NULL;
 }
