@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 15:08:06 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/12 16:22:01 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/07 15:52:02 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strsep(char **string_in, char *delim)
 
 	begin = *string_in;
 	if (begin == NULL)
-		return NULL;
+		return (NULL);
 	end = begin + ft_strcspn(begin, delim);
 	if (*end)
 	{

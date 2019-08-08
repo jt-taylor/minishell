@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:51:58 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/07/24 16:19:24 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/07 15:51:47 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 int		ft_stronly_space(char *str)
 {
-	int		i = 0;
+	int		i;
 
+	i = 0;
 	while (str[i])
 	{
 		if (str[i] > 32)
-			break;
+			break ;
 		i++;
 	}
 	if (str[i] == '\0')

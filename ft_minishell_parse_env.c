@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 16:45:23 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/07 15:01:43 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/07 20:18:45 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 /*
 ** this should return the only the path env variable
+** be carefull strdup'ing the return of this function ,
+** my ft_strdup segfaults if it tries to dupe NULL;
 */
 
 char		*get_env_variable(char *var_name)
