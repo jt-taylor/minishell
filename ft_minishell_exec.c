@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 21:29:51 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/09 12:24:01 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/09 14:24:58 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static int		minishell_run_command(char *path, char **args)
 	else if (pid < 0)
 	{
 		ft_putstr("Fork failed -- create new process\n");
-		// do i need to exit here ?
 		exit(0);
 		return (-1);
 	}
@@ -82,8 +81,7 @@ static int		check_path(char **command_list, char *command_name)
 	char		**path_array;
 	struct stat	s;
 
-	path_array = (get_env_variable("PATH")) ?
-		ft_strsplit(get_env_variable("PATH"), ':') : NULL;
+	path_array = (GENV_VAR("PATH")) ? ft_strsplit(GENV_VAR("PATH"), ':') : NULL;
 	i = -1;
 	while (path_array && path_array[++i])
 	{

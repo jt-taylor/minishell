@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 13:03:46 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/09 13:37:33 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/09 14:28:38 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void		set_dir_env_value(char *path)
 	tmp = (char **)malloc(sizeof(char *) * (3));
 	tmp[0] = ft_strdup(path);
 	tmp[1] = ft_strdup("OLDPWD");
-	tmp[2] =  (get_env_variable("PWD")) ? ft_strdup(get_env_variable("PWD"))
+	tmp[2] = (get_env_variable("PWD")) ? ft_strdup(get_env_variable("PWD"))
 		: ft_strdup("");
 	tmp[3] = NULL;
 	builtin_setenv(tmp, tmp[0]);

@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 16:45:23 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/09 14:11:06 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/09 14:34:04 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void		empty_envv(char **envv)
 {
 	ft_freestrarr(envv);
 	envv = (char **)malloc(sizeof(char *) * 2);
-	//does this break it ??
-	//envv = NULL;
 	envv[0] = ft_strdup("");
 }
 
@@ -69,7 +67,7 @@ void		ft_minishell_printenv(char **args, char *str)
 ** returns the length of the shell envirement
 */
 
-int		grab_env_len(char **env)
+int			grab_env_len(char **env)
 {
 	int	i;
 

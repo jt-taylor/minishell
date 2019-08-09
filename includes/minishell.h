@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:33:50 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/09 13:06:09 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/09 14:28:16 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 */
 
 # define MINISHELL_BUF_SIZE 1024
+# define GENV_VAR get_env_variable
 
 /*
 ** all of the glabal vars
@@ -98,12 +99,14 @@ void						builtin_cd(char **args, char *str);
 /*
 ** ft_minishell_builtin_env_exec.c
 */
-int							env_minishell_execute(char **command_list, char **envv);
+int							env_minishell_execute(char **command_list,
+								char **envv);
 
 /*
 ** ft_minishell_builtin_env_setenv.c
 */
-void						env_builtin_setenv(char **arg, char *str, char **envv);
+void						env_builtin_setenv(char **arg, char *str,
+								char **envv);
 
 /*
 ** ft_minishell_builtin_echo.c

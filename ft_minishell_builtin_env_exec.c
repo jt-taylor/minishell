@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:27:05 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/08 13:47:22 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/09 14:27:08 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int		env_minishell_check_builtins(char *str)
 	return (-1);
 }
 
-static char		*env_ft_strjoin_path_free(char *s1, char *s2, int opt)
+static char		*env_ft_strjoin_path(char *s1, char *s2, int opt)
 {
 	int		i;
 	char	*tmp;
@@ -93,7 +93,7 @@ static int		env_check_path(char **command_list, char *command_name,
 		if (ft_strstart_w_str(command_name, path_array[i]))
 			binary_path = ft_strdup(command_name);
 		else
-			binary_path = env_ft_strjoin_path_free(path_array[i], command_name, 0);
+			binary_path = env_ft_strjoin_path(path_array[i], command_name, 0);
 		if (lstat(binary_path, &s) == -1)
 			free(binary_path);
 		else
@@ -118,7 +118,6 @@ int				env_minishell_execute(char **command_list, char **envv)
 	int			i;
 	struct stat	l;
 
-	//str = ft_strsplit(*command_list, ' ');
 	str = command_list;
 	if ((i = (env_minishell_check_builtins(str[0]))) != -1)
 	{
@@ -135,7 +134,5 @@ int				env_minishell_execute(char **command_list, char **envv)
 		else
 			ft_dprintf(2, "%s: command not found\n", str[0]);
 	}
-	//ft_freestrarr(str);
 	return (0);
 }
-

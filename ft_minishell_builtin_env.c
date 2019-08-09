@@ -6,13 +6,13 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 12:05:32 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/09 13:26:22 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/09 14:30:31 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char		**envirement_array_dupe(void)
+static char			**envirement_array_dupe(void)
 {
 	char	**envv;
 	int		i;
@@ -26,7 +26,6 @@ static char		**envirement_array_dupe(void)
 	return (envv);
 }
 
-//handle the args
 static inline void	builtin_env_handle_args(int *i, int point, char **args)
 {
 	while (args[++*i])
@@ -47,13 +46,13 @@ static inline void	builtin_env_handle_args(int *i, int point, char **args)
 /*
 ** so either i rewrite the exec functions to take char ** as an input and just
 ** pass g_env as the paramenter
-** or copy g_env and change that then at the end set g_env to a copy of the original
-**
+** or copy g_env and change that then at the end
+** set g_env to a copy of the original
 **
 ** gonan have to set g_env to the new envv then set it back cause im a dummy
 */
 
-void	builtin_env(char **args, char *value)
+void				builtin_env(char **args, char *value)
 {
 	int		i;
 	int		point;
@@ -75,7 +74,6 @@ void	builtin_env(char **args, char *value)
 		ft_minishell_printenv(args + i, *(args + i));
 	else
 		env_minishell_execute(args + i, g_env);
-	//if (g_env)
 	ft_freestrarr(g_env);
 	g_env = envv;
 }
