@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:13:26 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/07 21:04:06 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/08 11:34:49 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,8 @@ static int				minishell_main_loop(char *raw_input, char *tmp,
 	generic_pointer = parsed_input;
 	while (*parsed_input && **parsed_input != '\0')
 	{
+		//to test the env_exec
+		//env_minishell_execute(parsed_input, g_env);
 		minishell_execute(parsed_input);
 		parsed_input++;
 	}

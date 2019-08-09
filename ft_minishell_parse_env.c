@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 16:45:23 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/07 20:18:45 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/08 13:28:13 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void		ft_minishell_printenv(char **args, char *str)
 ** returns the length of the shell envirement
 */
 
-static int	grab_env_len(char **env)
+int		grab_env_len(char **env)
 {
 	int	i;
 

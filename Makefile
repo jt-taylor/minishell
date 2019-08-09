@@ -6,7 +6,7 @@
 #    By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/16 19:30:49 by jtaylor           #+#    #+#              #
-#    Updated: 2019/08/07 14:31:25 by jtaylor          ###   ########.fr        #
+#    Updated: 2019/08/08 12:52:35 by jtaylor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRC =	ft_minishell_exec.c \
 		ft_minishell_signal.c \
 		ft_minishell_exit.c \
 		ft_minishell_env.c \
+		ft_minishell_builtin_env_exec.c \
+		ft_minishell_bultin_env_setenv.c \
 		ft_minishell_unsetenv.c \
 		ft_minishell_builtin_env.c \
 		ft_minishell_cd.c \
