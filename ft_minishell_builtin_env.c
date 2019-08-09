@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 12:05:32 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/08 22:58:41 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/08 23:42:52 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,21 +123,14 @@ void	builtin_env(char **args, char *value)
 		if (args[i][1] == 'u' && args[i][0] == '-')
 			builtin_unsetenv(args + point, args[++i]);
 		else if (args[i][0] == '-' && args[i][1] == 's')
-		{
-			//set env variable;
-			// need to increment the pointer again
 			builtin_setenv(args + point, args[i += 2]);
-			//++i;
-		}
 		else if (args[i][0] == '-')
 			empty_envv(g_env);
 		else
 			break ;
 	}
-	//run the resulting command
 	env_minishell_execute(args + i, g_env);
 	if (g_env)
 		ft_freestrarr(g_env);
 	g_env = envv;
-	//free(args?);
 }

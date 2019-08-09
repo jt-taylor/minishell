@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:13:26 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/08 11:34:49 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/08 23:42:52 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void					testing(char **testing, char *str)
 t_builtin_jumptable		*g_builtin_jumptable[] =
 {
 	builtin_cd,
-	testing,
+	builtin_echo,
 	builtin_env,
 	builtin_setenv,
 	builtin_unsetenv,
