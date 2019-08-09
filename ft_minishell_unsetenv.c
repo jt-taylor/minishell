@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 10:43:44 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/07 21:10:03 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/09 14:08:59 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static char		**ft_env_array_remove_realloc(int index)
 		j++;
 	}
 	ft_freestrarr(g_env);
-	tmp[i] = NULL;
+	//tmp[i] = NULL;
+	tmp[j] = NULL;
 	return (tmp);
 }
 

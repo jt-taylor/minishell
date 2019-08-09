@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 18:17:15 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/06 16:41:23 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/09 13:52:41 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		ft_strstart_w_str(char *str, char *s)
 	int		i;
 
 	i = 0;
-	if (str == NULL)
+	if (str == NULL || s == NULL)
 		return (0);
 	while (s[i])
 	{

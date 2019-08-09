@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 13:03:46 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/07 20:22:32 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/09 13:37:33 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void			builtin_cd(char **args, char *str)
 	{
 		if (!ft_strcmp("-", args[1]) && get_env_variable("OLDPWD"))
 			path = ft_strdup(get_env_variable("OLDPWD"));
+		else if (args[i][0] == '~' && get_env_variable("HOME"))
+			path = ft_strjoin_free(get_env_variable("HOME"), (args[i] + 1), 0);
 		else if (args[i][0] == '/')
 			path = ft_strdup(args[i]);
 		else if (get_env_variable("PWD"))
