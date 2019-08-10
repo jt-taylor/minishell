@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 12:05:32 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/09 21:21:47 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/10 11:34:20 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ static inline void	builtin_env_handle_args(int *i, int point, char **args)
 	while (args[++*i])
 	{
 		point = *i;
-		if (args[*i][1] == 'u' && args[*i][0] == '-')
+		if (args[*i][1] == 'u' && args[*i][0] == '-' && !args[*i][2])
 			(*(args + ++*i)) ?
 				builtin_unsetenv(args + point, args[*i]) : 0;
 		else if (args[*i][0] == '-' && args[*i][1] == 's')
-			builtin_setenv(args + point, args[*i += 2]);
+			(*(args + point) && *(args + *i + 2) && !args[*i][2]) ?
+			builtin_setenv(args + point, args[*i += 2]) :
+			ft_dprintf(2, "-s requires the format : -s [name] [value]\n");
 		else if (args[*i][0] == '-' && !args[*i][1])
 			g_env = empty_envv(g_env);
 		else
