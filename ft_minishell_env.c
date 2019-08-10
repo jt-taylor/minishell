@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 17:27:37 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/07 15:13:28 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/09 20:53:03 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static char		**ft_env_array_realloc(char **args, char *value)
 	ft_freestrarr(g_env);
 	tmp[i] = ft_strjoin(args[1], "=");
 	tmp[i] = ft_strjoin_free(tmp[i], value, 1);
+	tmp[++i] = NULL;
 	return (tmp);
 }
 
@@ -79,7 +80,7 @@ static void		ft_check_env_var(char **args, char *value)
 	int		i;
 
 	i = 0;
-	while (g_env[i])
+	while (g_env[i] && g_env[i][0])
 	{
 		if (ft_strstart_w_str(g_env[i], args[1]))
 		{
