@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 18:53:02 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/07 14:30:46 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/10 12:11:44 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ void		ft_minishell_exit_shell(void)
 
 void		ft_shell_print_prompt(void)
 {
-	ft_printf("a simple \"$>\"\t->");
+	//ft_printf("a simple \"$>\"\t->");
+	ft_printf("PID:%d\t$->", getpid());
 }
