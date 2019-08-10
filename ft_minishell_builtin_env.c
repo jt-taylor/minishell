@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 12:05:32 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/09 14:30:31 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/09 21:21:47 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static inline void	builtin_env_handle_args(int *i, int point, char **args)
 		else if (args[*i][0] == '-' && args[*i][1] == 's')
 			builtin_setenv(args + point, args[*i += 2]);
 		else if (args[*i][0] == '-' && !args[*i][1])
-			empty_envv(g_env);
+			g_env = empty_envv(g_env);
 		else
 			break ;
 	}

@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 16:45:23 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/09 20:23:50 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/09 21:32:00 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,13 @@ char		*get_env_variable(char *var_name)
 	return (NULL);
 }
 
-void		empty_envv(char **envv)
+char		**empty_envv(char **envv)
 {
 	ft_freestrarr(envv);
 	envv = (char **)malloc(sizeof(char *) * 2);
 	envv[0] = ft_strdup("");
+	envv[1] = NULL;
+	return (envv);
 }
 
 /*

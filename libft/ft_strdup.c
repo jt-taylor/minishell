@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/20 17:10:24 by jtaylor           #+#    #+#             */
-/*   Updated: 2018/10/22 20:21:38 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/09 21:43:26 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strdup(char const *s)
 	int		i;
 
 	i = 0;
-	if ((dup = ft_strnew(ft_strlen(s))))
+	if (s != NULL && (dup = ft_strnew(ft_strlen(s))))
 		;
 	else
 		return (NULL);

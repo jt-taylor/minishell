@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 09:33:50 by jtaylor           #+#    #+#             */
-/*   Updated: 2019/08/09 14:28:16 by jtaylor          ###   ########.fr       */
+/*   Updated: 2019/08/09 21:22:10 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void						ft_minishell_printenv(char **args, char *str);
 void						ft_minishell_parse_env(char **env);
 char						*get_env_variable(char *var_name);
 int							grab_env_len(char **env);
-void						empty_envv(char **envv);
+char						**empty_envv(char **envv);
 
 /*
 ** ft_minishell_prompt.c"
